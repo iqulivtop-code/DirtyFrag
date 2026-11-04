@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#000000">
+    android:background="#0A0A0A">
 
     <!-- Верхний Toolbar -->
     <LinearLayout
@@ -48,7 +48,7 @@
         android:layout_above="@id/bottomBar"
         android:padding="16dp">
 
-        <!-- Карточка Fetch KSU / SU Manager -->
+        <!-- Карточка SU Manager -->
         <df.root.DraggableCardView
             android:id="@+id/cardSuManager"
             android:layout_width="match_parent"
@@ -254,7 +254,7 @@
 
     </df.root.CardStackLayout>
 
-    <!-- Нижняя панель управления -->
+    <!-- Нижняя панель и подпись автора -->
     <RelativeLayout
         android:id="@+id/bottomBar"
         android:layout_width="match_parent"
@@ -266,18 +266,29 @@
             android:id="@+id/twoStep"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="12dp" />
+            android:layout_marginBottom="8dp" />
 
         <Button
             android:id="@+id/btnRun"
             android:layout_width="match_parent"
-            android:layout_height="54dp"
+            android:layout_height="50dp"
             android:layout_below="@id/twoStep"
             android:background="@drawable/bg_pill"
             android:text="Rooted"
             android:textColor="#FFFFFF"
             android:textSize="16sp"
             android:textStyle="bold" />
+
+        <!-- Копирайт -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/btnRun"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="8dp"
+            android:text="Created by @kurwakid1337"
+            android:textColor="#666666"
+            android:textSize="11sp" />
 
         <ImageButton
             android:id="@+id/btnShareLog"
