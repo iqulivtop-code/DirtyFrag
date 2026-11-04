@@ -2,6 +2,7 @@ package df.root;
 
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -13,7 +14,7 @@ import android.widget.Toolbar;
 
 /**
  * Hand-written stand-in for the viewbinding class AGP used to generate. Every
- * binding.&lt;id&gt; call site in MainActivity keeps working and only the import and the
+ * binding.<id> call site in MainActivity keeps working and only the import and the
  * inflate line changed, but the app no longer depends on
  * androidx.databinding:viewbinding.
  *
@@ -25,83 +26,75 @@ final class ActivityMainBinding {
 
     private final RelativeLayout root;
 
-    final FrameLayout          appBarLayout;
-    final BottomFadeView       bottomFade;
-    final FrameLayout          btnKsu;
-    final ImageButton          btnMenu;
-    final PillButton           btnRun;
-    final ImageButton          btnShareLog;
-    final DraggableCardView    cardBoot;
-    final DraggableCardView    cardLog;
-    final DraggableCardView    cardModules;
-    final DraggableCardView    cardSuManager;
-    final CardStackLayout      cardStack;
-    final ImageView            chevronSuManager;
-    final View                 dimOverlay;
-    final ImageView            ksuChevron;
-    final TextView             ksuLabel;
-    final FrameLayout          logWindow;
-    final TextView             modulesSubtitle;
-    final View                 odinDot;
+    final LinearLayout         toolbar;
     final TextView             odinLabel;
-    final LinearLayout         odinPill;
-    final ScrollView           outputScroll;
-    final TextView             outputView;
+    final ImageButton          menuAnchor;
+    final View                 dimOverlay;
+    final CardStackLayout      cardStack;
+    final DraggableCardView    cardFetchKsu;
+    final LinearLayout         rowFetchKsu;
+    final DraggableCardView    cardSuManager;
     final LinearLayout         rowSuManager;
     final TextView             suManagerSubtitle;
-    final OneUiSwitch          switchAdvancedLog;
-    final OneUiSwitch          switchAutoSoftReboot;
-    final OneUiSwitch          switchBootStart;
-    final OneUiSwitch          switchModules;
-    final Toolbar              toolbar;
-    final TextView             tvAutorunDesc;
+    final DraggableCardView    cardBoot;
     final TextView             tvAutorunTitle;
-    final TextView             tvRebootDesc;
+    final TextView             tvAutorunDesc;
+    final OneUiSwitch          switchBootStart;
     final TextView             tvRebootTitle;
+    final TextView             tvRebootDesc;
+    final OneUiSwitch          switchAutoSoftReboot;
+    final DraggableCardView    cardModules;
+    final TextView             modulesSubtitle;
+    final OneUiSwitch          switchModules;
+    final DraggableCardView    cardLog;
+    final OneUiSwitch          switchAdvancedLog;
+    final ScrollView           logWindow;
+    final TextView             outputView;
+    final RelativeLayout       bottomBar;
     final TwoStepProgressView  twoStep;
-    final TextView             updateLabel;
-    final FrameLayout          updatePill;
-    final View                 menuAnchor;
+    final Button               btnRun;
+    final ImageButton          btnShareLog;
+    final FrameLayout          btnKsu;
+    final ImageView            ksuChevron;
+    final TextView             ksuLabel;
+    final LinearLayout         odinPill;
+    final View                 odinDot;
 
     private ActivityMainBinding(View inflated) {
         this.root = (RelativeLayout) inflated;
-        appBarLayout       = inflated.findViewById(R.id.appBarLayout);
-        bottomFade         = inflated.findViewById(R.id.bottomFade);
-        btnKsu             = inflated.findViewById(R.id.btnKsu);
-        btnMenu            = inflated.findViewById(R.id.btnMenu);
-        btnRun             = inflated.findViewById(R.id.btnRun);
-        btnShareLog        = inflated.findViewById(R.id.btnShareLog);
-        cardBoot           = inflated.findViewById(R.id.cardBoot);
-        cardLog            = inflated.findViewById(R.id.cardLog);
-        cardModules        = inflated.findViewById(R.id.cardModules);
-        cardSuManager      = inflated.findViewById(R.id.cardSuManager);
-        cardStack          = inflated.findViewById(R.id.cardStack);
-        chevronSuManager   = inflated.findViewById(R.id.chevronSuManager);
-        dimOverlay         = inflated.findViewById(R.id.dimOverlay);
-        ksuChevron         = inflated.findViewById(R.id.ksuChevron);
-        ksuLabel           = inflated.findViewById(R.id.ksuLabel);
-        logWindow          = inflated.findViewById(R.id.logWindow);
-        menuAnchor         = inflated.findViewById(R.id.menuAnchor);
-        modulesSubtitle    = inflated.findViewById(R.id.modulesSubtitle);
-        odinDot            = inflated.findViewById(R.id.odinDot);
-        odinLabel          = inflated.findViewById(R.id.odinLabel);
-        odinPill           = inflated.findViewById(R.id.odinPill);
-        outputScroll       = inflated.findViewById(R.id.outputScroll);
-        outputView         = inflated.findViewById(R.id.outputView);
-        rowSuManager       = inflated.findViewById(R.id.rowSuManager);
-        suManagerSubtitle  = inflated.findViewById(R.id.suManagerSubtitle);
-        switchAdvancedLog  = inflated.findViewById(R.id.switchAdvancedLog);
+        toolbar              = inflated.findViewById(R.id.toolbar);
+        odinLabel            = inflated.findViewById(R.id.odinLabel);
+        menuAnchor           = inflated.findViewById(R.id.menuAnchor);
+        dimOverlay           = inflated.findViewById(R.id.dimOverlay);
+        cardStack            = inflated.findViewById(R.id.cardStack);
+        cardFetchKsu         = inflated.findViewById(R.id.cardFetchKsu);
+        rowFetchKsu          = inflated.findViewById(R.id.rowFetchKsu);
+        cardSuManager        = inflated.findViewById(R.id.cardSuManager);
+        rowSuManager         = inflated.findViewById(R.id.rowSuManager);
+        suManagerSubtitle    = inflated.findViewById(R.id.suManagerSubtitle);
+        cardBoot             = inflated.findViewById(R.id.cardBoot);
+        tvAutorunTitle       = inflated.findViewById(R.id.tvAutorunTitle);
+        tvAutorunDesc        = inflated.findViewById(R.id.tvAutorunDesc);
+        switchBootStart      = inflated.findViewById(R.id.switchBootStart);
+        tvRebootTitle        = inflated.findViewById(R.id.tvRebootTitle);
+        tvRebootDesc         = inflated.findViewById(R.id.tvRebootDesc);
         switchAutoSoftReboot = inflated.findViewById(R.id.switchAutoSoftReboot);
-        switchBootStart    = inflated.findViewById(R.id.switchBootStart);
-        switchModules      = inflated.findViewById(R.id.switchModules);
-        toolbar            = inflated.findViewById(R.id.toolbar);
-        tvAutorunDesc      = inflated.findViewById(R.id.tvAutorunDesc);
-        tvAutorunTitle     = inflated.findViewById(R.id.tvAutorunTitle);
-        tvRebootDesc       = inflated.findViewById(R.id.tvRebootDesc);
-        tvRebootTitle      = inflated.findViewById(R.id.tvRebootTitle);
-        twoStep            = inflated.findViewById(R.id.twoStep);
-        updateLabel        = inflated.findViewById(R.id.updateLabel);
-        updatePill         = inflated.findViewById(R.id.updatePill);
+        cardModules          = inflated.findViewById(R.id.cardModules);
+        modulesSubtitle      = inflated.findViewById(R.id.modulesSubtitle);
+        switchModules        = inflated.findViewById(R.id.switchModules);
+        cardLog              = inflated.findViewById(R.id.cardLog);
+        switchAdvancedLog    = inflated.findViewById(R.id.switchAdvancedLog);
+        logWindow            = inflated.findViewById(R.id.logWindow);
+        outputView           = inflated.findViewById(R.id.outputView);
+        bottomBar            = inflated.findViewById(R.id.bottomBar);
+        twoStep              = inflated.findViewById(R.id.twoStep);
+        btnRun               = inflated.findViewById(R.id.btnRun);
+        btnShareLog          = inflated.findViewById(R.id.btnShareLog);
+        btnKsu               = inflated.findViewById(R.id.btnKsu);
+        ksuChevron           = inflated.findViewById(R.id.ksuChevron);
+        ksuLabel             = inflated.findViewById(R.id.ksuLabel);
+        odinPill             = inflated.findViewById(R.id.odinPill);
+        odinDot              = inflated.findViewById(R.id.odinDot);
     }
 
     static ActivityMainBinding inflate(LayoutInflater inflater) {
