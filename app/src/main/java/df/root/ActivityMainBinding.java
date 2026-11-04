@@ -19,7 +19,7 @@ final class ActivityMainBinding {
     final LinearLayout         toolbar;
     final TextView             odinLabel;
     final ImageButton          menuAnchor;
-    final ImageButton          btnMenu; // Алиас для menuAnchor
+    final ImageButton          btnMenu;
     final View                 dimOverlay;
     final CardStackLayout      cardStack;
     final DraggableCardView    cardFetchKsu;
@@ -40,11 +40,11 @@ final class ActivityMainBinding {
     final DraggableCardView    cardLog;
     final OneUiSwitch          switchAdvancedLog;
     final ScrollView           logWindow;
-    final ScrollView           outputScroll; // Алиас для logWindow
+    final ScrollView           outputScroll;
     final TextView             outputView;
     final RelativeLayout       bottomBar;
     final TwoStepProgressView  twoStep;
-    final CustomButton         btnRun; // Поддержка setStrokeColor
+    final CustomButton         btnRun;
     final ImageButton          btnShareLog;
     final FrameLayout          btnKsu;
     final ImageView            ksuChevron;
@@ -99,13 +99,14 @@ final class ActivityMainBinding {
         return root;
     }
 
-    // Вспомогательный класс-обертка, чтобы метод setStrokeColor не вызывал ошибок компиляции
-    static class CustomButton extends androidx.appcompat.widget.AppCompatButton {
+    // Чистый класс-наследник android.widget.Button со всеми необходимыми заглушками методов
+    static class CustomButton extends android.widget.Button {
         public CustomButton(android.content.Context context) { super(context); }
         public CustomButton(android.content.Context context, android.util.AttributeSet attrs) { super(context, attrs); }
         public CustomButton(android.content.Context context, android.util.AttributeSet attrs, int defStyleAttr) { super(context, attrs, defStyleAttr); }
+        
         public void setStrokeColor(android.content.res.ColorStateList color) {
-            // Заглушка для совместимости со старым вызовом из MainActivity
+            // Заглушка для совместимости
         }
     }
 }
