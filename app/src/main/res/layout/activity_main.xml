@@ -99,7 +99,7 @@
         android:clipToPadding="false"
         android:orientation="vertical">
 
-        <!-- Новая премиальная карточка для быстрого скачивания KernelSU -->
+        <!-- Карточка быстрого скачивания KernelSU -->
         <df.root.DraggableCardView
             android:id="@+id/cardFetchKsu"
             android:layout_width="match_parent"
@@ -132,14 +132,14 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        text="Fetch KernelSU"
+                        android:text="Fetch KernelSU"
                         android:textColor="#FFFFFFFF"
                         android:textSize="16sp" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        text="Download latest release from GitHub"
+                        android:text="Download latest release from GitHub"
                         android:textColor="#FF9E9E9E"
                         android:textSize="12sp" />
 
@@ -189,7 +189,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        text="SU Manager"
+                        android:text="SU Manager"
                         android:textColor="#FFFFFFFF"
                         android:textSize="16sp" />
 
@@ -197,7 +197,7 @@
                         android:id="@+id/suManagerSubtitle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        text="Not selected - required"
+                        android:text="Not selected - required"
                         android:textColor="#FF9E9E9E"
                         android:textSize="12sp" />
 
@@ -251,7 +251,7 @@
                             android:id="@+id/tvAutorunTitle"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            text="Autorun"
+                            android:text="Autorun"
                             android:textColor="#FFFFFFFF"
                             android:textSize="16sp" />
 
@@ -259,7 +259,7 @@
                             android:id="@+id/tvAutorunDesc"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            text="Runs the exploit after boot"
+                            android:text="Runs the exploit after boot"
                             android:textColor="#FF9E9E9E"
                             android:textSize="12sp" />
 
@@ -289,7 +289,7 @@
                             android:id="@+id/tvRebootTitle"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            text="Auto reboot"
+                            android:text="Auto reboot"
                             android:textColor="#FFFFFFFF"
                             android:textSize="16sp" />
 
@@ -297,7 +297,7 @@
                             android:id="@+id/tvRebootDesc"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            text="Soft reboots after root"
+                            android:text="Soft reboots after root"
                             android:textColor="#FF9E9E9E"
                             android:textSize="12sp" />
 
@@ -344,7 +344,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        text="KernelSU Modules"
+                        android:text="KernelSU Modules"
                         android:textColor="#FFFFFFFF"
                         android:textSize="16sp" />
 
@@ -352,7 +352,7 @@
                         android:id="@+id/modulesSubtitle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        text="Enabled - active at next reboot"
+                        android:text="Enabled - active at next reboot"
                         android:textColor="#FF9E9E9E"
                         android:textSize="12sp" />
 
@@ -398,14 +398,14 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        text="Show advanced log"
+                        android:text="Show advanced log"
                         android:textColor="#FFFFFFFF"
                         android:textSize="16sp" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        text="Shows full scrollable log"
+                        android:text="Shows full scrollable log"
                         android:textColor="#FF9E9E9E"
                         android:textSize="12sp" />
 
@@ -478,7 +478,7 @@
         android:paddingEnd="28dp"
         android:elevation="12dp"
         android:stateListAnimator="@null"
-        text="Run exploit"
+        android:text="Run exploit"
         android:textSize="14sp"
         android:backgroundTint="#FF262626"
         android:textColor="#FFFFFFFF"
@@ -508,7 +508,7 @@
             android:layout_gravity="start|center_vertical"
             android:layout_marginStart="22dp"
             android:alpha="0"
-            text="Manager"
+            android:text="Manager"
             android:textColor="#FFFFFFFF"
             android:textSize="14sp" />
 
@@ -544,7 +544,7 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="8dp"
-        text="Created by @kurwakid1337"
+        android:text="Created by @kurwakid1337"
         android:textColor="#66FFFFFF"
         android:textSize="11sp" />
 
@@ -554,7 +554,7 @@
         android:layout_height="match_parent"
         android:layout_alignParentTop="true"
         android:background="@color/black"
-        elevation="30dp"
+        android:elevation="30dp"
         android:visibility="gone" />
 
 </RelativeLayout>
