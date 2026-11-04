@@ -56,7 +56,6 @@ public class MainActivity extends Activity implements IReporter {
     private static final float PILL_INSET_FRACTION = 0.26f;
     private android.animation.ValueAnimator ksuMorph;
     private TextView titleView;
-    private int headlinePx;
     private D2Status.Result mOdin;
     private D2Writer.Vault mVault;
     private boolean mSuWasPresent;
@@ -301,7 +300,7 @@ public class MainActivity extends Activity implements IReporter {
 
         Log.i(TAG, "version " + BuildConfig.VERSION_NAME);
 
-        // Привязываем клик на карточку Fetch KernelSU
+        // Обработчик клика для карточки Fetch KernelSU
         binding.rowFetchKsu.setOnClickListener(v -> {
             v.performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP);
             openUrl("https://github.com/tiann/KernelSU/releases/latest");
