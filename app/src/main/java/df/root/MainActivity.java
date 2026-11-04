@@ -302,13 +302,13 @@ public class MainActivity extends Activity implements IReporter {
 
         Log.i(TAG, "version " + BuildConfig.VERSION_NAME);
 
-        // Кнопка "Fetch KSU" в шапке (updatePill): видима по умолчанию, виброотклик + скачивание KernelSU
+        // Принудительно показываем плашку "Fetch KSU" и вешаем открытие ссылки на релизы
+        binding.updateLabel.setText("Fetch KSU");
         binding.updatePill.setVisibility(View.VISIBLE);
         binding.updatePill.setOnClickListener(v -> {
             v.performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP);
             openUrl("https://github.com/tiann/KernelSU/releases/latest");
         });
-        mExec.execute(this::checkForAppUpdate);
 
         android.view.View.OnClickListener openRecovery = v -> {
             v.performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP);
@@ -1027,73 +1027,6 @@ public class MainActivity extends Activity implements IReporter {
         binding.btnRun.setStrokeColor(ColorStateList.valueOf(ok ? 0xFFA6A6A6 : 0xFF1F1F1F));
     }
 
-    private void showUpdatePill() {
-        if (binding.updatePill.getVisibility() == View.VISIBLE) return;
-        binding.toolbar.setTitle("");
-        int word = headlinePx;
-        if (word <= 0) {
-            word = Math.round(binding.updateLabel.getPaint().measureText("Update"));
-        }
-        int w = word + Math.round(48 * getResources().getDisplayMetrics().density);
-        android.widget.FrameLayout.LayoutParams lp =
-                (android.widget.FrameLayout.LayoutParams) binding.updateLabel.getLayoutParams();
-        lp.width = w;
-        binding.updateLabel.setLayoutParams(lp);
-
-        binding.updatePill.setVisibility(View.VISIBLE);
-        if (updateMorph != null && updateMorph.isRunning()) updateMorph.cancel();
-        updateMorph = android.animation.ValueAnimator.ofInt(0, w);
-        updateMorph.setDuration(250);
-        updateMorph.setInterpolator(new android.view.animation.DecelerateInterpolator());
-        updateMorph.addUpdateListener(anim -> setUpdatePillWidth((int) anim.getAnimatedValue()));
-        updateMorph.addListener(new android.animation.AnimatorListenerAdapter() {
-            @Override
-            public void onAnimationEnd(android.animation.Animator animation) {
-                binding.updatePill.requestLayout();
-            }
-        });
-        updateMorph.start();
-    }
-
-    private void setUpdatePillWidth(int px) {
-        android.widget.Toolbar.LayoutParams lp =
-                (android.widget.Toolbar.LayoutParams) binding.updatePill.getLayoutParams();
-        lp.width = px;
-        binding.updatePill.setLayoutParams(lp);
-    }
-
-    private void checkForAppUpdate() {
-        try {
-            java.net.HttpURLConnection conn = (java.net.HttpURLConnection)
-                    new java.net.URL("https://api.github.com/repos/mitschud/DirtyFrag/releases/latest")
-                            .openConnection();
-            conn.setConnectTimeout(8000);
-            conn.setReadTimeout(8000);
-            conn.setRequestProperty("Accept", "application/vnd.github+json");
-            conn.setRequestProperty("User-Agent", "DirtyFrag");
-            if (conn.getResponseCode() != 200) return;
-            java.io.BufferedReader reader = new java.io.BufferedReader(
-                    new java.io.InputStreamReader(conn.getInputStream()));
-            StringBuilder body = new StringBuilder();
-            String line;
-            while ((line = reader.readLine()) != null) body.append(line);
-            reader.close();
-            String tag = new org.json.JSONObject(body.toString()).optString("tag_name", "");
-            if (tag.isEmpty()) return;
-            String latest = tag.replaceFirst("^[vV]", "").trim();
-            String mine;
-            try {
-                mine = getPackageManager().getPackageInfo(getPackageName(), 0).versionName;
-            } catch (Exception e) {
-                return;
-            }
-            if (latest.equalsIgnoreCase(mine)) return;
-            mMain.post(this::showUpdatePill);
-        } catch (Exception e) {
-            Log.i(TAG, "update check failed: " + e);
-        }
-    }
-
     private void refreshRecovery() {
         D2Status.Result r = D2Status.read(this);
         SharedPreferences sp = d2Prefs();
@@ -1652,4 +1585,4 @@ public class MainActivity extends Activity implements IReporter {
         }
     }
 
-    }
+}
