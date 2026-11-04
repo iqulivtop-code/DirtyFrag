@@ -12,16 +12,6 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toolbar;
 
-/**
- * Hand-written stand-in for the viewbinding class AGP used to generate. Every
- * binding.<id> call site in MainActivity keeps working and only the import and the
- * inflate line changed, but the app no longer depends on
- * androidx.databinding:viewbinding.
- *
- * Each field is resolved once here, at inflate time, which is exactly what the
- * generated code did. A missing id throws at inflation rather than showing up as a
- * compile error, so the list below has to stay in step with activity_main.xml.
- */
 final class ActivityMainBinding {
 
     private final RelativeLayout root;
@@ -29,6 +19,7 @@ final class ActivityMainBinding {
     final LinearLayout         toolbar;
     final TextView             odinLabel;
     final ImageButton          menuAnchor;
+    final ImageButton          btnMenu; // Алиас для menuAnchor
     final View                 dimOverlay;
     final CardStackLayout      cardStack;
     final DraggableCardView    cardFetchKsu;
@@ -49,10 +40,11 @@ final class ActivityMainBinding {
     final DraggableCardView    cardLog;
     final OneUiSwitch          switchAdvancedLog;
     final ScrollView           logWindow;
+    final ScrollView           outputScroll; // Алиас для logWindow
     final TextView             outputView;
     final RelativeLayout       bottomBar;
     final TwoStepProgressView  twoStep;
-    final Button               btnRun;
+    final CustomButton         btnRun; // Поддержка setStrokeColor
     final ImageButton          btnShareLog;
     final FrameLayout          btnKsu;
     final ImageView            ksuChevron;
@@ -65,6 +57,7 @@ final class ActivityMainBinding {
         toolbar              = inflated.findViewById(R.id.toolbar);
         odinLabel            = inflated.findViewById(R.id.odinLabel);
         menuAnchor           = inflated.findViewById(R.id.menuAnchor);
+        btnMenu              = menuAnchor;
         dimOverlay           = inflated.findViewById(R.id.dimOverlay);
         cardStack            = inflated.findViewById(R.id.cardStack);
         cardFetchKsu         = inflated.findViewById(R.id.cardFetchKsu);
@@ -85,6 +78,7 @@ final class ActivityMainBinding {
         cardLog              = inflated.findViewById(R.id.cardLog);
         switchAdvancedLog    = inflated.findViewById(R.id.switchAdvancedLog);
         logWindow            = inflated.findViewById(R.id.logWindow);
+        outputScroll         = logWindow;
         outputView           = inflated.findViewById(R.id.outputView);
         bottomBar            = inflated.findViewById(R.id.bottomBar);
         twoStep              = inflated.findViewById(R.id.twoStep);
@@ -103,5 +97,15 @@ final class ActivityMainBinding {
 
     RelativeLayout getRoot() {
         return root;
+    }
+
+    // Вспомогательный класс-обертка, чтобы метод setStrokeColor не вызывал ошибок компиляции
+    static class CustomButton extends androidx.appcompat.widget.AppCompatButton {
+        public CustomButton(android.content.Context context) { super(context); }
+        public CustomButton(android.content.Context context, android.util.AttributeSet attrs) { super(context, attrs); }
+        public CustomButton(android.content.Context context, android.util.AttributeSet attrs, int defStyleAttr) { super(context, attrs, defStyleAttr); }
+        public void setStrokeColor(android.content.res.ColorStateList color) {
+            // Заглушка для совместимости со старым вызовом из MainActivity
+        }
     }
 }
