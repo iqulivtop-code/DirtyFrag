@@ -10,7 +10,6 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
-import android.widget.Toolbar;
 
 final class ActivityMainBinding {
 
@@ -19,11 +18,8 @@ final class ActivityMainBinding {
     final LinearLayout         toolbar;
     final TextView             odinLabel;
     final ImageButton          menuAnchor;
-    final ImageButton          btnMenu;
     final View                 dimOverlay;
     final CardStackLayout      cardStack;
-    final DraggableCardView    cardFetchKsu;
-    final LinearLayout         rowFetchKsu;
     final DraggableCardView    cardSuManager;
     final LinearLayout         rowSuManager;
     final TextView             suManagerSubtitle;
@@ -40,11 +36,10 @@ final class ActivityMainBinding {
     final DraggableCardView    cardLog;
     final OneUiSwitch          switchAdvancedLog;
     final ScrollView           logWindow;
-    final ScrollView           outputScroll;
     final TextView             outputView;
     final RelativeLayout       bottomBar;
     final TwoStepProgressView  twoStep;
-    final Button               btnRun; // Изменено на стандартный Button во избежание ClassCastException
+    final Button               btnRun;
     final ImageButton          btnShareLog;
     final FrameLayout          btnKsu;
     final ImageView            ksuChevron;
@@ -57,11 +52,8 @@ final class ActivityMainBinding {
         toolbar              = inflated.findViewById(R.id.toolbar);
         odinLabel            = inflated.findViewById(R.id.odinLabel);
         menuAnchor           = inflated.findViewById(R.id.menuAnchor);
-        btnMenu              = menuAnchor;
         dimOverlay           = inflated.findViewById(R.id.dimOverlay);
         cardStack            = inflated.findViewById(R.id.cardStack);
-        cardFetchKsu         = inflated.findViewById(R.id.cardFetchKsu);
-        rowFetchKsu          = inflated.findViewById(R.id.rowFetchKsu);
         cardSuManager        = inflated.findViewById(R.id.cardSuManager);
         rowSuManager         = inflated.findViewById(R.id.rowSuManager);
         suManagerSubtitle    = inflated.findViewById(R.id.suManagerSubtitle);
@@ -78,17 +70,18 @@ final class ActivityMainBinding {
         cardLog              = inflated.findViewById(R.id.cardLog);
         switchAdvancedLog    = inflated.findViewById(R.id.switchAdvancedLog);
         logWindow            = inflated.findViewById(R.id.logWindow);
-        outputScroll         = logWindow;
         outputView           = inflated.findViewById(R.id.outputView);
         bottomBar            = inflated.findViewById(R.id.bottomBar);
         twoStep              = inflated.findViewById(R.id.twoStep);
         btnRun               = inflated.findViewById(R.id.btnRun);
         btnShareLog          = inflated.findViewById(R.id.btnShareLog);
-        btnKsu               = inflated.findViewById(R.id.btnKsu);
-        ksuChevron           = inflated.findViewById(R.id.ksuChevron);
-        ksuLabel             = inflated.findViewById(R.id.ksuLabel);
-        odinPill             = inflated.findViewById(R.id.odinPill);
-        odinDot              = inflated.findViewById(R.id.odinDot);
+        
+        // Заглушки для опциональных элементов из исходников, если они не задействованы напрямую в этой разметке
+        btnKsu               = null;
+        ksuChevron           = null;
+        ksuLabel             = null;
+        odinPill             = null;
+        odinDot              = null;
     }
 
     static ActivityMainBinding inflate(LayoutInflater inflater) {
@@ -99,3 +92,4 @@ final class ActivityMainBinding {
         return root;
     }
 }
+
