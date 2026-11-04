@@ -1,4 +1,4 @@
-name: Build
+Name: Build
 
 on:
   push:
@@ -96,9 +96,13 @@ jobs:
           java-version: 21
 
       - uses: gradle/actions/setup-gradle@v6
+        with:
+          cache-read-only: false
 
       - name: Build DFRoot APK
         run: |
+          chmod +x gradlew
+          ./gradlew clean
           if [ "${{ github.event_name }}" = "pull_request" ]; then
             ./gradlew :app:assembleDebug
           else
