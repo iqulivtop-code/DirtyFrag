@@ -498,6 +498,18 @@
         android:tint="#FFFFFFFF"
         android:visibility="gone" />
 
+    <!-- Копирайт создателя внизу экрана -->
+    <TextView
+        android:id="@+id/tvCredits"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="8dp"
+        android:text="Created by @kurwakid1337"
+        android:textColor="#66FFFFFF"
+        android:textSize="11sp" />
+
     <View
         android:id="@+id/dimOverlay"
         android:layout_width="match_parent"
