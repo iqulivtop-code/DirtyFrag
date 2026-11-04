@@ -72,7 +72,7 @@ public class MainActivity extends Activity implements IReporter {
     private boolean failedRun;
     private String lastFailReason;
 
-    private static final String[] CARD_KEYS = {"sumanager", "autorun", "modules", "log"};
+    private static final String[] CARD_KEYS = {"fetchksu", "sumanager", "autorun", "modules", "log"};
     private final android.widget.ImageButton[] hideButtons =
             new android.widget.ImageButton[CARD_KEYS.length];
     private final List<String> hiddenCards = new ArrayList<>();
@@ -302,10 +302,8 @@ public class MainActivity extends Activity implements IReporter {
 
         Log.i(TAG, "version " + BuildConfig.VERSION_NAME);
 
-        // Принудительно показываем плашку "Fetch KSU" и вешаем открытие ссылки на релизы
-        binding.updateLabel.setText("Fetch KSU");
-        binding.updatePill.setVisibility(View.VISIBLE);
-        binding.updatePill.setOnClickListener(v -> {
+        // Обработчик нажатия на карточку Fetch KernelSU
+        binding.rowFetchKsu.setOnClickListener(v -> {
             v.performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP);
             openUrl("https://github.com/tiann/KernelSU/releases/latest");
         });
@@ -348,13 +346,11 @@ public class MainActivity extends Activity implements IReporter {
             if (base == null) return;
             Typeface bold = Typeface.create(base, 700, false);
             binding.odinLabel.setTypeface(bold);
-            binding.updateLabel.setTypeface(bold);
             for (int i = 0; i < binding.toolbar.getChildCount(); i++) {
                 View child = binding.toolbar.getChildAt(i);
                 if (child instanceof TextView) {
                     titleView = (TextView) child;
                     titleView.setTypeface(bold);
-                    headlinePx = Math.round(titleView.getPaint().measureText("DirtyFrag"));
                 }
             }
         });
@@ -586,6 +582,7 @@ public class MainActivity extends Activity implements IReporter {
     private DraggableCardView cardForKey(String key) {
         if (key == null) return null;
         switch (key) {
+            case "fetchksu": return binding.cardFetchKsu;
             case "sumanager": return binding.cardSuManager;
             case "autorun": return binding.cardBoot;
             case "modules": return binding.cardModules;
