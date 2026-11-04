@@ -300,7 +300,7 @@ public class MainActivity extends Activity implements IReporter {
 
         Log.i(TAG, "version " + BuildConfig.VERSION_NAME);
 
-        // Обработчик клика для карточки Fetch KernelSU
+        // Fetch KernelSU card click handler
         binding.rowFetchKsu.setOnClickListener(v -> {
             v.performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP);
             openUrl("https://github.com/tiann/KernelSU/releases/latest");
@@ -1580,4 +1580,4 @@ public class MainActivity extends Activity implements IReporter {
         }
     }
 
-  }
+}
