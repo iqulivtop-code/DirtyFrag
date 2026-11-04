@@ -44,7 +44,7 @@ final class ActivityMainBinding {
     final TextView             outputView;
     final RelativeLayout       bottomBar;
     final TwoStepProgressView  twoStep;
-    final CustomButton         btnRun;
+    final Button               btnRun; // Изменено на стандартный Button во избежание ClassCastException
     final ImageButton          btnShareLog;
     final FrameLayout          btnKsu;
     final ImageView            ksuChevron;
@@ -97,16 +97,5 @@ final class ActivityMainBinding {
 
     RelativeLayout getRoot() {
         return root;
-    }
-
-    // Чистый класс-наследник android.widget.Button со всеми необходимыми заглушками методов
-    static class CustomButton extends android.widget.Button {
-        public CustomButton(android.content.Context context) { super(context); }
-        public CustomButton(android.content.Context context, android.util.AttributeSet attrs) { super(context, attrs); }
-        public CustomButton(android.content.Context context, android.util.AttributeSet attrs, int defStyleAttr) { super(context, attrs, defStyleAttr); }
-        
-        public void setStrokeColor(android.content.res.ColorStateList color) {
-            // Заглушка для совместимости
-        }
     }
 }
