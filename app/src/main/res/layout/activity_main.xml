@@ -60,6 +60,7 @@
 
             </FrameLayout>
 
+            <!-- Плашка Recovery с более контрастной и дорогой обводкой -->
             <LinearLayout
                 android:id="@+id/odinPill"
                 android:layout_width="wrap_content"
@@ -89,7 +90,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
                     android:text="Recovery"
-                    android:textColor="#FFD9D9D9"
+                    android:textColor="#FFFFFFFF"
                     android:textSize="12sp"
                     android:textStyle="bold" />
 
@@ -98,6 +99,13 @@
         </android.widget.Toolbar>
 
     </FrameLayout>
+
+    <!-- Тонкая градиентная линия-подсветка под шапкой для эффекта парения -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/appBarLayout"
+        android:background="#22FFFFFF" />
 
     <View
         android:id="@+id/menuAnchor"
@@ -112,7 +120,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/appBarLayout"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="14dp"
         android:layout_marginEnd="16dp"
         android:clipChildren="false"
         android:clipToPadding="false"
@@ -498,7 +506,6 @@
         android:tint="#FFFFFFFF"
         android:visibility="gone" />
 
-    <!-- Копирайт создателя внизу экрана -->
     <TextView
         android:id="@+id/tvCredits"
         android:layout_width="wrap_content"
