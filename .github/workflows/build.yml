@@ -1,4 +1,4 @@
-Name: Build
+name: Build
 
 on:
   push:
@@ -8,15 +8,10 @@ on:
     branches: [master, main]
   workflow_dispatch:
 
-# The tag push creates the GitHub Release, which needs contents: write. Without this the
-# default token is read-only and softprops/action-gh-release fails with HTTP 403.
 permissions:
   contents: write
 
 jobs:
-  # The LKM selection rules are pure logic, and they live in a header precisely so
-  # they can be run here: exp.c itself only compiles against the NDK, so without
-  # this split the table and its matching rules would ship untested.
   ko-select-tests:
     name: Native selection logic tests
     runs-on: ubuntu-latest
@@ -52,12 +47,6 @@ jobs:
       - name: Build dfroot.ko
         run: |
           cd lkm
-          # lkm/Makefile owns the section diet - do not repeat it here. An extra
-          # llvm-objcopy pass used to run on top of it and stripped
-          # .note.gnu.build-id, which upstream deliberately keeps: without that
-          # section the module fails to load on the Galaxy A34 (SM-A346M,
-          # 6.6.92). Keeping one diet definition also makes CI output byte-for-byte
-          # what the root Makefile produces in the same DDK image.
           make -j$(nproc)
           mkdir -p $GITHUB_WORKSPACE/out
           cp dfroot.ko $GITHUB_WORKSPACE/out/dfroot-${{ matrix.kmi }}.ko
@@ -112,8 +101,6 @@ jobs:
       - name: Stage release asset
         if: startsWith(github.ref, 'refs/tags/')
         run: |
-          # app/build.gradle.kts always writes app/build/outputs/apk/release/dirtyfrag.apk,
-          # so the versioned asset name comes from the tag (v1.11 -> DirtyFrag-v1.11.apk).
           cp app/build/outputs/apk/release/dirtyfrag.apk "DirtyFrag-${GITHUB_REF_NAME}.apk"
           ls -l DirtyFrag-*.apk
 
@@ -128,7 +115,6 @@ jobs:
       - name: Build release notes from CHANGELOG
         if: startsWith(github.ref, 'refs/tags/')
         run: |
-          # Take just the section for this tag: v1.11 -> the "## 1.11" block.
           VER="${GITHUB_REF_NAME#v}"
           awk -v ver="$VER" '/^## /{p = ($0 == "## " ver); next} p' CHANGELOG.md > RELEASE_NOTES.md
           wc -l RELEASE_NOTES.md
