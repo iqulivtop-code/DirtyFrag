@@ -6,7 +6,7 @@
          no palette-aware theme underneath; what is written down is what draws.
          It is dark rather than DayNight: every surface and every on* colour was pinned to
          the dark ramp anyway, so the DayNight parent only ever risked a light frame. -->
-    <style name="Theme.DirtyFrag" parent="@android:style/Theme.Material.NoActionBar">
+    <style name="Theme.KurwaSU" parent="@android:style/Theme.Material.NoActionBar">
         <item name="android:fontFamily">@font/inter</item>
         <item name="android:windowBackground">@color/black</item>
         <item name="android:statusBarColor">@color/black</item>
@@ -17,9 +17,9 @@
         <!-- Every press highlight in the app: 30% mid-grey, never white. PillButton draws
              its own ripple in the same #4D6E6E6E, as do the explicit ripple drawables. -->
         <item name="android:colorControlHighlight">#4D6E6E6E</item>
-        <item name="android:colorAccent">#FFC9C9C9</item>
-        <item name="android:colorControlActivated">#FFC9C9C9</item>
-        <item name="android:colorPrimary">#FFB0B0B0</item>
+        <item name="android:colorAccent">#FF00C8FF</item>
+        <item name="android:colorControlActivated">#FF00C8FF</item>
+        <item name="android:colorPrimary">#FF00C8FF</item>
         <item name="android:colorPrimaryDark">@color/black</item>
         <item name="android:textColorHighlight">#4D6E6E6E</item>
         <!-- System splash screen. minSdk is 32, so these live here and NOT in a
