@@ -69,7 +69,7 @@ android {
     }
 }
 
-// AGP 9 replacement for applicationVariants API (вынесено за пределы блока android)
+// AGP 9 replacement for applicationVariants API
 androidComponents {
     onVariants { variant ->
         variant.outputs.forEach { output ->
