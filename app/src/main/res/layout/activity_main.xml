@@ -106,7 +106,6 @@
         android:layout_alignParentEnd="true"
         android:layout_below="@id/appBarLayout" />
 
-    <!-- Стек карточек в стиле Liquid Glass Material 3 -->
     <df.root.CardStackLayout
         android:id="@+id/cardStack"
         android:layout_width="match_parent"
@@ -153,8 +152,7 @@
                         android:layout_height="wrap_content"
                         android:text="SU Manager"
                         android:textColor="#FFFFFFFF"
-                        android:textSize="16sp"
-                        android:textStyle="medium" />
+                        android:textSize="16sp" />
 
                     <TextView
                         android:id="@+id/suManagerSubtitle"
@@ -211,6 +209,7 @@
                         android:orientation="vertical">
 
                         <TextView
+                            android:id="@+id/tvAutorunTitle"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="Autorun"
@@ -218,6 +217,7 @@
                             android:textSize="16sp" />
 
                         <TextView
+                            android:id="@+id/tvAutorunDesc"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="Runs the exploit after boot"
@@ -247,6 +247,7 @@
                         android:orientation="vertical">
 
                         <TextView
+                            android:id="@+id/tvRebootTitle"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="Auto reboot"
@@ -254,6 +255,7 @@
                             android:textSize="16sp" />
 
                         <TextView
+                            android:id="@+id/tvRebootDesc"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="Soft reboots after root"
