@@ -21,7 +21,7 @@
             android:contentInsetStart="0dp"
             android:contentInsetStartWithNavigation="0dp"
             android:title="KurwaSu"
-            android:titleMarginStart="32dp"
+            android:titleMarginStart="24dp"
             android:titleTextAppearance="@style/ToolbarTitle">
 
             <ImageButton
@@ -35,32 +35,6 @@
                 android:scaleType="center"
                 android:src="@drawable/ic_more" />
 
-            <FrameLayout
-                android:id="@+id/updatePill"
-                android:layout_width="0dp"
-                android:layout_height="44dp"
-                android:layout_gravity="start|center_vertical"
-                android:layout_marginStart="32dp"
-                android:background="@drawable/bg_update_pill"
-                android:clickable="true"
-                android:contentDescription="Update available"
-                android:focusable="true"
-                android:visibility="gone">
-
-                <TextView
-                    android:id="@+id/updateLabel"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="start|center_vertical"
-                    android:gravity="center"
-                    android:text="Update"
-                    android:textColor="#FF101418"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
-
-            </FrameLayout>
-
-            <!-- Плашка Recovery с более контрастной и дорогой обводкой -->
             <LinearLayout
                 android:id="@+id/odinPill"
                 android:layout_width="wrap_content"
@@ -100,7 +74,6 @@
 
     </FrameLayout>
 
-    <!-- Тонкая градиентная линия-подсветка под шапкой для эффекта парения -->
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
@@ -126,10 +99,68 @@
         android:clipToPadding="false"
         android:orientation="vertical">
 
+        <!-- Новая премиальная карточка для быстрого скачивания KernelSU -->
+        <df.root.DraggableCardView
+            android:id="@+id/cardFetchKsu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardBackgroundColor="#141414"
+            app:cardCornerRadius="28dp"
+            app:strokeWidth="1dp"
+            app:strokeColor="#33FFFFFF">
+
+            <LinearLayout
+                android:id="@+id/rowFetchKsu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="@drawable/card_row_ripple"
+                android:clickable="true"
+                android:focusable="true"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
+                android:paddingTop="14dp"
+                android:paddingBottom="14dp">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_gravity="center_vertical"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        text="Fetch KernelSU"
+                        android:textColor="#FFFFFFFF"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        text="Download latest release from GitHub"
+                        android:textColor="#FF9E9E9E"
+                        android:textSize="12sp" />
+
+                </LinearLayout>
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center_vertical"
+                    android:contentDescription="Download"
+                    android:src="@drawable/ic_chevron" />
+
+            </LinearLayout>
+
+        </df.root.DraggableCardView>
+
         <df.root.DraggableCardView
             android:id="@+id/cardSuManager"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
             app:cardBackgroundColor="#141414"
             app:cardCornerRadius="28dp"
             app:strokeWidth="1dp"
@@ -158,7 +189,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="SU Manager"
+                        text="SU Manager"
                         android:textColor="#FFFFFFFF"
                         android:textSize="16sp" />
 
@@ -166,7 +197,7 @@
                         android:id="@+id/suManagerSubtitle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Not selected - required"
+                        text="Not selected - required"
                         android:textColor="#FF9E9E9E"
                         android:textSize="12sp" />
 
@@ -220,7 +251,7 @@
                             android:id="@+id/tvAutorunTitle"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Autorun"
+                            text="Autorun"
                             android:textColor="#FFFFFFFF"
                             android:textSize="16sp" />
 
@@ -228,7 +259,7 @@
                             android:id="@+id/tvAutorunDesc"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Runs the exploit after boot"
+                            text="Runs the exploit after boot"
                             android:textColor="#FF9E9E9E"
                             android:textSize="12sp" />
 
@@ -258,7 +289,7 @@
                             android:id="@+id/tvRebootTitle"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Auto reboot"
+                            text="Auto reboot"
                             android:textColor="#FFFFFFFF"
                             android:textSize="16sp" />
 
@@ -266,7 +297,7 @@
                             android:id="@+id/tvRebootDesc"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Soft reboots after root"
+                            text="Soft reboots after root"
                             android:textColor="#FF9E9E9E"
                             android:textSize="12sp" />
 
@@ -313,7 +344,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="KernelSU Modules"
+                        text="KernelSU Modules"
                         android:textColor="#FFFFFFFF"
                         android:textSize="16sp" />
 
@@ -321,7 +352,7 @@
                         android:id="@+id/modulesSubtitle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Enabled - active at next reboot"
+                        text="Enabled - active at next reboot"
                         android:textColor="#FF9E9E9E"
                         android:textSize="12sp" />
 
@@ -367,14 +398,14 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Show advanced log"
+                        text="Show advanced log"
                         android:textColor="#FFFFFFFF"
                         android:textSize="16sp" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Shows full scrollable log"
+                        text="Shows full scrollable log"
                         android:textColor="#FF9E9E9E"
                         android:textSize="12sp" />
 
@@ -447,7 +478,7 @@
         android:paddingEnd="28dp"
         android:elevation="12dp"
         android:stateListAnimator="@null"
-        android:text="Run exploit"
+        text="Run exploit"
         android:textSize="14sp"
         android:backgroundTint="#FF262626"
         android:textColor="#FFFFFFFF"
@@ -477,7 +508,7 @@
             android:layout_gravity="start|center_vertical"
             android:layout_marginStart="22dp"
             android:alpha="0"
-            android:text="Manager"
+            text="Manager"
             android:textColor="#FFFFFFFF"
             android:textSize="14sp" />
 
@@ -513,7 +544,7 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="8dp"
-        android:text="Created by @kurwakid1337"
+        text="Created by @kurwakid1337"
         android:textColor="#66FFFFFF"
         android:textSize="11sp" />
 
@@ -523,7 +554,7 @@
         android:layout_height="match_parent"
         android:layout_alignParentTop="true"
         android:background="@color/black"
-        android:elevation="30dp"
+        elevation="30dp"
         android:visibility="gone" />
 
 </RelativeLayout>
