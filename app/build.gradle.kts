@@ -18,21 +18,12 @@ android {
         }
     }
 
-    signingConfigs {
-        create("keystore") {
-            storeFile = file("keystore.jks")
-            storePassword = "polkmn123"
-            keyAlias = "key"
-            keyPassword = "polkmn123"
-        }
-    }
-
     buildTypes {
         debug {
-            signingConfig = signingConfigs.getByName("keystore")
+            signingConfig = signingConfigs.getByName("debug")
         }
         release {
-            signingConfig = signingConfigs.getByName("keystore")
+            signingConfig = signingConfigs.getByName("debug")
             isMinifyEnabled = true
             isShrinkResources = true
             proguardFiles(
