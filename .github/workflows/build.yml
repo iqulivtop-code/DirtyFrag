@@ -1,127 +1,33 @@
-name: Build
+name: Build Android APK
 
 on:
   push:
-    branches: [master, main]
-    tags: ['v*']
+    branches: [ "main", "master" ]
   pull_request:
-    branches: [master, main]
-  workflow_dispatch:
-
-permissions:
-  contents: write
+    branches: [ "main", "master" ]
 
 jobs:
-  ko-select-tests:
-    name: Native selection logic tests
+  build:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v7
+    - name: Checkout repository
+      uses: actions/checkout@v4
 
-      - name: Build and run tests/ko_select_test.c
-        run: |
-          cc -std=gnu11 -Wall -Wextra -Werror -I app/src/main/jni \
-             tests/ko_select_test.c -o /tmp/ko_select_test
-          /tmp/ko_select_test
+    - name: Set up JDK 17
+      uses: actions/setup-java@v4
+      with:
+        distribution: 'temurin'
+        java-version: '17'
 
-  build-lkms:
-    name: LKMs / ${{ matrix.kmi }}
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        kmi:
-          - android12-5.10
-          - android13-5.10
-          - android13-5.15
-          - android14-5.15
-          - android14-6.1
-          - android15-6.6
-          - android16-6.12
-          - android17-6.18
-    container:
-      image: ghcr.io/ylarod/ddk-min:${{ matrix.kmi }}-20260828
-      options: --privileged
-    steps:
-      - uses: actions/checkout@v7
+    - name: Grant execute permission for gradlew
+      run: chmod +x gradlew
 
-      - name: Build dfroot.ko
-        run: |
-          cd lkm
-          make -j$(nproc)
-          mkdir -p $GITHUB_WORKSPACE/out
-          cp dfroot.ko $GITHUB_WORKSPACE/out/dfroot-${{ matrix.kmi }}.ko
-          make clean
+    - name: Build Debug APK with Gradle
+      run: ./gradlew assembleDebug
 
-      - name: Upload dfroot.ko
-        uses: actions/upload-artifact@v7
-        with:
-          name: df-lkm-${{ matrix.kmi }}
-          path: out/dfroot-${{ matrix.kmi }}.ko
-
-  build-dfroot:
-    needs: build-lkms
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v7
-
-      - name: Validate signing config
-        if: github.event_name != 'pull_request'
-        run: |
-          if [ ! -f "app/keystore.jks" ]; then
-            echo "::error::app/keystore.jks not found in repository."
-            exit 1
-          fi
-
-      - name: Download DF LKMs
-        uses: actions/download-artifact@v7
-        with:
-          pattern: df-lkm-*
-          merge-multiple: true
-          path: app/src/main/jni/ko/
-
-      - uses: actions/setup-java@v6
-        with:
-          distribution: temurin
-          java-version: 21
-
-      - uses: gradle/actions/setup-gradle@v6
-        with:
-          cache-disabled: true
-
-      - name: Build DFRoot APK
-        run: |
-          chmod +x gradlew
-          ./gradlew clean
-          if [ "${{ github.event_name }}" = "pull_request" ]; then
-            ./gradlew :app:assembleDebug
-          else
-            ./gradlew :app:assembleRelease
-          fi
-
-      - name: Stage release asset
-        if: startsWith(github.ref, 'refs/tags/')
-        run: |
-          cp app/build/outputs/apk/release/dirtyfrag.apk "DirtyFrag-${GITHUB_REF_NAME}.apk"
-          ls -l DirtyFrag-*.apk
-
-      - name: Upload DFRoot APK
-        uses: actions/upload-artifact@v7
-        with:
-          name: DFRoot
-          path: |
-            app/build/outputs/apk/release/dirtyfrag.apk
-            app/build/outputs/apk/debug/dirtyfrag.apk
-
-      - name: Build release notes from CHANGELOG
-        if: startsWith(github.ref, 'refs/tags/')
-        run: |
-          VER="${GITHUB_REF_NAME#v}"
-          awk -v ver="$VER" '/^## /{p = ($0 == "## " ver); next} p' CHANGELOG.md > RELEASE_NOTES.md
-          wc -l RELEASE_NOTES.md
-
-      - name: Create GitHub Release
-        if: startsWith(github.ref, 'refs/tags/')
-        uses: softprops/action-gh-release@v1
-        with:
-          files: DirtyFrag-*.apk
-          body_path: RELEASE_NOTES.md
+    - name: Upload APK artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: dirtyfrag-debug-apk
+        path: app/build/outputs/apk/debug/app-debug.apk
