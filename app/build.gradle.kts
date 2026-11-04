@@ -1,75 +1,37 @@
 plugins {
-    id("com.android.application")
+    id 'com.android.application'
 }
 
 android {
-    namespace = "df.root"
-    compileSdk = 37
+    namespace 'df.root'
+    compileSdk 34
 
     defaultConfig {
-        applicationId = "df.root"
-        minSdk = 32
-        targetSdk = 37
-        versionCode = 34
-        versionName = "1.17"
+        applicationId "df.root"
+        minSdk 26
+        targetSdk 34
+        versionCode 1
+        versionName "1.0"
 
-        ndk {
-            abiFilters += listOf("arm64-v8a")
-        }
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
-        debug {
-            signingConfig = signingConfigs.getByName("debug")
-        }
         release {
-            signingConfig = signingConfigs.getByName("debug")
-            isMinifyEnabled = true
-            isShrinkResources = true
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
-            )
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-
+    
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
-    }
-
-    lint {
-        checkReleaseBuilds = false
-    }
-
-    buildFeatures {
-        viewBinding = false
-        buildConfig = true
-    }
-
-    externalNativeBuild {
-        cmake {
-            path("src/main/jni/CMakeLists.txt")
-        }
-    }
-
-    packaging {
-        jniLibs {
-            useLegacyPackaging = true
-        }
-    }
-}
-
-// AGP 9 replacement for applicationVariants API
-androidComponents {
-    onVariants { variant ->
-        variant.outputs.forEach { output ->
-            output.outputFileName.set("dirtyfrag.apk")
-        }
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
 }
 
 dependencies {
-    // Deliberately empty.
+    // Базовые библиотеки совместимости и UI, необходимые для нормальной работы разметки и переключателей
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'com.google.android.material:material:1.11.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
 }
-// clear cache trigger
